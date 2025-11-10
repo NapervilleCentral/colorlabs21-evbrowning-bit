@@ -6,7 +6,7 @@
  * @author (Kevin Hayes)
  * @version (10-19-2016)
  */
-import java.awt.*;
+import java.awt.*;//the color class in awt
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
 public class TestPicture17
@@ -32,10 +32,11 @@ public class TestPicture17
      Picture ferris1 = new Picture("images/2000 ferris wheel2.jpg");
      Picture ferris2 = new Picture("images/2000 ferris wheel2.jpg");
      Picture ferris3 = new Picture("images/2000 ferris wheel2.jpg");
-
-     //apic.explore();
+     Picture ferris4 = new Picture("images/2000 ferris wheel2.jpg");
+     //apic.explore();//Dsplays picture
      ferris1.explore();
      
+     //to change color of picture, get all of the pixels!
      //makes an array of pixels
      Pixel[] pixels;
      //gets pixels from picture and assigns to pixels array
@@ -43,30 +44,109 @@ public class TestPicture17
     
      //how many pixels or how large array
     System.out.println("This is a large array"+pixels.length  );
-
-
-    /**/
-        //access each index
+    
+    /*
+    //access each index//array notation
     System.out.println(pixels[17]);
-    //access each pixel
+    //access each pixel//picture method
     Pixel spot = ferris1.getPixel(100,100);
     
+    
+    Color lavender= new Color(230,230,250);
+    
+    
+    Pixel spot50 = ferris1.getPixel(50,50);
     System.out.println(pixels[17].getColor());
     System.out.println(spot);
+    
+    Pixel spot17 = pixels[17];
+    spot17.setRed(200);
+    spot17.setBlue(150);
+    spot17.setGreen(175);
+    
+    
+    spot.setColor(Color.yellow);
+    spot50.setColor(lavender);
+    ferris1.explore();
 /*
     pixels[17].setColor(Color.blue);
     spot.setColor(new Color(252,252,252));
     pixels[500034].setColor(Color.blue);
 
     ferris1.explore();
-/*
+/**/
    // loop to access indexes of array or collection
 
     //for each loop spot  is a ?
-    for (Pixel spot : pixels)
-    System.out.println( spot );
-
-
+    /**/
+    int red;
+    for (Pixel spot1 : pixels)
+    {
+        //System.out.println( spot1 );
+        red=spot1.getRed();
+        red= (int) (red*.25);
+        spot1.setRed(red);
+    }
+    ferris1.explore();
+    
+    Pixel[] pixels2;
+    pixels2 = ferris2.getPixels();
+    int blue,green,count=0;
+    
+    for (Pixel spot2 : pixels2)
+    {
+        red=spot2.getRed();
+        green=spot2.getGreen();
+        blue=spot2.getBlue();
+        red=(int)((red-255)*-1);
+        blue=(int)((blue-255)*-1);
+        green=(int)((green-255)*-1);
+        spot2.setRed(red);
+        spot2.setGreen(green);
+        spot2.setBlue(blue);
+        count++;
+    }
+    ferris2.explore();
+    
+    Pixel[] pixels3;
+    pixels2 = ferris3.getPixels();
+    int avg;
+    for (Pixel spot2 : pixels2)
+    {
+        red=spot2.getRed();
+        green=spot2.getGreen();
+        blue=spot2.getBlue();
+        avg= red+blue+green/3;
+        spot2.setRed(avg);
+        spot2.setGreen(avg);
+        spot2.setBlue(avg);
+        count++;
+    }
+    ferris3.explore();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+    Random gen = new Random();
+    int x;
+    x = gen.nextInt(101);
+    
+    int green,count=0;
+    for (Pixel spot1 : pixels)
+    {
+        if (count%20 == 0)
+        {
+        spot1.setColor(Color.yellow);
+        }
+        count++;
+    }
+    ferris1.explore();
    
  /**/
 
