@@ -33,6 +33,8 @@ public class TestPicture17
      Picture ferris2 = new Picture("images/2000 ferris wheel2.jpg");
      Picture ferris3 = new Picture("images/2000 ferris wheel2.jpg");
      Picture ferris4 = new Picture("images/2000 ferris wheel2.jpg");
+     Picture ferris5 = new Picture("images/2000 ferris wheel2.jpg");
+     Picture ferris6 = new Picture("images/2000 ferris wheel2.jpg");
      //apic.explore();//Dsplays picture
      ferris1.explore();
      
@@ -88,6 +90,9 @@ public class TestPicture17
         spot1.setRed(red);
     }
     ferris1.explore();
+    ferris1.write("images/SFTry1.jpg");
+    
+    
     
     Pixel[] pixels2;
     pixels2 = ferris2.getPixels();
@@ -109,9 +114,9 @@ public class TestPicture17
     ferris2.explore();
     
     Pixel[] pixels3;
-    pixels2 = ferris3.getPixels();
+    pixels3 = ferris3.getPixels();
     int avg;
-    for (Pixel spot2 : pixels2)
+    for (Pixel spot2 : pixels3)
     {
         red=spot2.getRed();
         green=spot2.getGreen();
@@ -123,6 +128,68 @@ public class TestPicture17
         count++;
     }
     ferris3.explore();
+    
+    Pixel[] pixels4;
+    pixels4 = ferris4.getPixels();
+    
+    for (Pixel spot2 : pixels4)
+    {
+        red=spot2.getRed();
+        green=spot2.getGreen();
+        blue=spot2.getBlue();
+        blue=(int)(blue+70);
+        red=(int)(red+70);
+        green=(int)(green+70);
+        spot2.setRed(red);
+        spot2.setGreen(green);
+        spot2.setBlue(blue);
+        
+    }
+    ferris4.explore();
+    
+    Pixel[] pixels5;
+    pixels5 = ferris5.getPixels();
+    
+    for (Pixel spot2 : pixels5)
+    {
+        red=spot2.getRed();
+        green=spot2.getGreen();
+        blue=spot2.getBlue();
+        blue=(int)(blue+96);
+        red=(int)(red-25);
+        green=(int)(green+12);
+        spot2.setRed(red);
+        spot2.setGreen(green);
+        spot2.setBlue(blue);
+        
+    }
+    ferris5.explore();
+    
+    Pixel[] pixels6;
+    pixels6 = ferris6.getPixels();
+    
+    for (Pixel spot2 : pixels6)
+    {
+        red=spot2.getRed();
+        green=spot2.getGreen();
+        blue=spot2.getBlue();
+        if (red >=2 && red <= 7) 
+        {
+           spot2.setRed(173); 
+        }
+        if (green >=2 && green <= 7)
+        {
+           spot2.setGreen(216); 
+        }
+        if (blue >=2 && blue <= 7)
+        {
+           spot2.setBlue(230); 
+        }
+        
+        
+    }
+    ferris6.explore();
+    
     
     
     
