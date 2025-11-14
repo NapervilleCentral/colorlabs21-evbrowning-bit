@@ -28,13 +28,16 @@ public class SheparFaireyLab
          Picture me = new Picture("images/Me.jpg");
          Picture me1 = new Picture("images/Me.jpg");
          Picture me2 = new Picture("images/Me.jpg");
-        
+         Picture me3 = new Picture("images/Me.jpg");
+         Picture me4 = new Picture("images/Me.jpg");
+         Picture me5 = new Picture("images/Me.jpg");
+        int red,green,blue,count=0;
          /**
           * method 1 change
           * 
           * 
-          */
-        int red,green,blue,count=0;
+         */
+        
         Pixel[] pixels;
         pixels = me.getPixels();
         int avg;
@@ -43,43 +46,40 @@ public class SheparFaireyLab
             red=spot.getRed();
             green=spot.getGreen();
             blue=spot.getBlue();
-            avg= red+blue+green/3;
+            avg= (red+blue+green)/3;
             spot.setRed(avg);
             spot.setGreen(avg);
             spot.setBlue(avg);
-            if (spot.getRed()<=255 && spot.getRed()>=220)//off white
+            if (spot.getRed()<=255 && spot.getRed()>=191.25)//off white
             {
                 spot.setRed(248);
-                spot.setRed(240);
-                spot.setRed(227);
+                spot.setGreen(240);
+                spot.setBlue(227);
             }
-            if (spot.getRed()<=220 && spot.getRed()>=190)//off white
-            {
-                spot.setRed(230);
-                spot.setRed(248);
-                spot.setRed(243);
-            }
-            if (spot.getRed()<190 && spot.getRed()>=170)//light blue
+            
+            if (spot.getRed()<191.25 && spot.getRed()>=127.5)//light blue
             {
                 spot.setRed(173);
-                spot.setRed(216);
-                spot.setRed(230);
+                spot.setGreen(216);
+                spot.setBlue(230);
             }
-            if (spot.getRed()<170 && spot.getRed()>=120)//red
+            if (spot.getRed()<127.5 && spot.getRed()>=63.75)//red
             {
                 spot.setRed(255);
-                spot.setRed(0);
-                spot.setRed(0);
+                spot.setGreen(0);
+                spot.setBlue(0);
             }
-            if (spot.getRed()<120 && spot.getRed()>0)//dark blue
+            if (spot.getRed()<63.75 && spot.getRed()>0)//dark blue
             {
                 spot.setRed(0);
-                spot.setRed(0);
-                spot.setRed(139);
+                spot.setGreen(0);
+                spot.setBlue(139);
             }
             
         }
         me.explore();
+        me.write("images/method1.jpg");
+         
          /**
           * method 2 change
           * 
@@ -92,7 +92,7 @@ public class SheparFaireyLab
             red=spot.getRed();
             green=spot.getGreen();
             blue=spot.getBlue();
-            avg= red+blue+green/3;
+            avg= (red+blue+green)/3;
             spot.setRed(avg);
             spot.setGreen(avg);
             spot.setBlue(avg);
@@ -105,11 +105,217 @@ public class SheparFaireyLab
                 min=spot.getRed();
             }
         }
-         
+        
+        double move= (max-min)/4;
+        System.out.println(min+"-"+max+"-"+move);
+        for (Pixel spot : pixels2)
+        {
+            red=spot.getRed();
+            green=spot.getGreen();
+            blue=spot.getBlue();
+            if (spot.getRed()<=max-min && spot.getRed()>=max-move)//off white
+            {
+                spot.setRed(248);
+                spot.setGreen(240);
+                spot.setBlue(227);
+            }
+            if (spot.getRed()<max-max/4 && spot.getRed()>=max-move*2)//light blue
+            {
+                spot.setRed(173);
+                spot.setGreen(216);
+                spot.setBlue(230);
+            }
+            if (spot.getRed()<max-move*2 && spot.getRed()>=max-move*3)//red
+            {
+                spot.setRed(255);
+                spot.setGreen(0);
+                spot.setBlue(0);
+            }
+            if (spot.getRed()<max-move*3 && spot.getRed()>min)//dark blue
+            {
+                spot.setRed(0);
+                spot.setGreen(0);
+                spot.setBlue(139);
+            }
+            
+        } 
+        me1.explore();
+        me.write("images/method2.jpg");
+        
          /**
           * custom color palette
           */
-
-         
+        Pixel[] pixels3;
+        pixels3 = me2.getPixels();
+        
+        for (Pixel spot : pixels3)
+        {
+            red=spot.getRed();
+            green=spot.getGreen();
+            blue=spot.getBlue();
+            avg= (red+blue+green)/3;
+            spot.setRed(avg);
+            spot.setGreen(avg);
+            spot.setBlue(avg);
+            if (spot.getRed()<=255 && spot.getRed()>=200)//white
+            {
+                spot.setRed(233);
+                spot.setGreen(227);
+                spot.setBlue( 233);
+            }
+            if (spot.getRed()<200 && spot.getRed()>=150)//purply
+            {
+                spot.setRed(199);
+                spot.setGreen(94);
+                spot.setBlue(186);
+            }
+            if (spot.getRed()<150 && spot.getRed()>=50)// dark purple
+            {
+                spot.setRed(132);
+                spot.setGreen(0);
+                spot.setBlue(116);
+            }
+            if (spot.getRed()<50 && spot.getRed()>0)//dark blue
+            {
+                spot.setRed(69);
+                spot.setGreen(0);
+                spot.setBlue(61);
+            }
+            
+        } 
+        me2.explore();
+        me2.write("images/method3(num1).jpg");
+        Pixel[] pixels4;
+        pixels4 = me3.getPixels();
+        
+        for (Pixel spot : pixels4)
+        {
+            red=spot.getRed();
+            green=spot.getGreen();
+            blue=spot.getBlue();
+            avg= (red+blue+green)/3;
+            spot.setRed(avg);
+            spot.setGreen(avg);
+            spot.setBlue(avg);
+            if (spot.getRed()<=255 && spot.getRed()>=220)//white
+            {
+                spot.setRed(233);
+                spot.setGreen(227);
+                spot.setBlue( 233);
+            }
+            if (spot.getRed()<220 && spot.getRed()>=170)//purply
+            {
+                spot.setRed(199);
+                spot.setGreen(94);
+                spot.setBlue(186);
+            }
+            if (spot.getRed()<170 && spot.getRed()>=100)// dark purple
+            {
+                spot.setRed(132);
+                spot.setGreen(0);
+                spot.setBlue(116);
+            }
+            if (spot.getRed()<100 && spot.getRed()>0)//dark blue
+            {
+                spot.setRed(69);
+                spot.setGreen(0);
+                spot.setBlue(61);
+            }
+            
+        } 
+        me3.explore();
+        me3.write("images/method3(num2).jpg"); 
+         Pixel[] pixels5;
+        pixels5 = me4.getPixels();
+        
+        for (Pixel spot : pixels5)
+        {
+            red=spot.getRed();
+            green=spot.getGreen();
+            blue=spot.getBlue();
+            avg= (red+blue+green)/3;
+            spot.setRed(avg);
+            spot.setGreen(avg);
+            spot.setBlue(avg);
+            if (spot.getRed()<=255 && spot.getRed()>=220)//white
+            {
+                spot.setRed(233);
+                spot.setGreen(227);
+                spot.setBlue( 233);
+            }
+            if (spot.getRed()<220 && spot.getRed()>=180)//purply
+            {
+                spot.setRed(199);
+                spot.setGreen(94);
+                spot.setBlue(186);
+            }
+            if (spot.getRed()<180 && spot.getRed()>=170)//magenta
+            {
+                spot.setRed(177);
+                spot.setGreen(26);
+                spot.setBlue(158);
+            }
+            if (spot.getRed()<170 && spot.getRed()>=100)// dark purple
+            {
+                spot.setRed(132);
+                spot.setGreen(0);
+                spot.setBlue(116);
+            }
+            if (spot.getRed()<100 && spot.getRed()>0)//dark blue
+            {
+                spot.setRed(69);
+                spot.setGreen(0);
+                spot.setBlue(61);
+            }
+            
+        } 
+        me4.explore();
+        me4.write("images/method3(num3).jpg"); 
+         Pixel[] pixels6;
+        pixels6 = me5.getPixels();
+        
+        for (Pixel spot : pixels6)
+        {
+            red=spot.getRed();
+            green=spot.getGreen();
+            blue=spot.getBlue();
+            avg= (red+blue+green)/3;
+            spot.setRed(avg);
+            spot.setGreen(avg);
+            spot.setBlue(avg);
+            if (spot.getRed()<=255 && spot.getRed()>=200)//white
+            {
+                spot.setRed(233);
+                spot.setGreen(227);
+                spot.setBlue( 233);
+            }
+            if (spot.getRed()<200 && spot.getRed()>=170)//purply
+            {
+                spot.setRed(199);
+                spot.setGreen(94);
+                spot.setBlue(186);
+            }
+            if (spot.getRed()<170 && spot.getRed()>=140)//magenta
+            {
+                spot.setRed(177);
+                spot.setGreen(26);
+                spot.setBlue(158);
+            }
+            if (spot.getRed()<140 && spot.getRed()>=100)// dark purple
+            {
+                spot.setRed(132);
+                spot.setGreen(0);
+                spot.setBlue(116);
+            }
+            if (spot.getRed()<100 && spot.getRed()>0)//dark blue
+            {
+                spot.setRed(69);
+                spot.setGreen(0);
+                spot.setBlue(61);
+            }
+            
+        } 
+        me5.explore();
+        me5.write("images/method3(num3).jpg"); 
     }//main       
 }//class
