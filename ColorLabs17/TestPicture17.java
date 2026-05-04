@@ -28,22 +28,31 @@ public class TestPicture17
      //Picture apic = new Picture("C:\\Users\\khayes\\Favorites\\Documents\APCS- Java\chap03\Curriclum 2013\Picture Color labs\images\\beach.jpg");
      
      //relative path
-     Picture apic = new Picture("images\\beach.jpg");
-     Picture ferris1 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris2 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris3 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris4 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris5 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris6 = new Picture("images/2000 ferris wheel2.jpg");
+     Picture apic = new Picture("images\\black.pigeon2.jpg");
+     Picture temple = new Picture("images\\temple.jpg");
+     Picture canvas = new Picture("images\\this one.jpg");
+     //Picture apic = new Picture("images\\beach.jpg");
+     //Picture ferris1 = new Picture("images/2000 ferris wheel2.jpg");
+     //Picture ferris2 = new Picture("images/2000 ferris wheel2.jpg");
+     //Picture ferris3 = new Picture("images/2000 ferris wheel2.jpg");
+     //Picture ferris4 = new Picture("images/2000 ferris wheel2.jpg");
+     //Picture ferris5 = new Picture("images/2000 ferris wheel2.jpg");
+     //Picture ferris6 = new Picture("images/2000 ferris wheel2.jpg");
      //apic.explore();//Dsplays picture
-     ferris1.explore();
+     //ferris1.explore();
+     mirrorVertical(apic);
+     apic.explore();
+     copytoCanvas(apic,canvas);
+     canvas.explore();
      
+     
+     temple.explore();
      //to change color of picture, get all of the pixels!
      //makes an array of pixels
      Pixel[] pixels;
      //gets pixels from picture and assigns to pixels array
-     pixels = ferris1.getPixels();
-    
+     //pixels = ferris1.getPixels();
+    /*
      //how many pixels or how large array
     System.out.println("This is a large array"+pixels.length  );
     
@@ -76,11 +85,11 @@ public class TestPicture17
     pixels[500034].setColor(Color.blue);
 
     ferris1.explore();
-/**/
+/*
    // loop to access indexes of array or collection
 
     //for each loop spot  is a ?
-    /**/
+    /*
     int red;
     for (Pixel spot1 : pixels)
     {
@@ -89,13 +98,13 @@ public class TestPicture17
         red= (int) (red*.25);
         spot1.setRed(red);
     }
-    ferris1.explore();
-    ferris1.write("images/SFTry1.jpg");
+    //ferris1.explore();
+    //ferris1.write("images/SFTry1.jpg");
     
     
     
     Pixel[] pixels2;
-    pixels2 = ferris2.getPixels();
+    //pixels2 = ferris2.getPixels();
     int blue,green,count=0;
     
     for (Pixel spot2 : pixels2)
@@ -111,10 +120,10 @@ public class TestPicture17
         spot2.setBlue(blue);
         count++;
     }
-    ferris2.explore();
+   // ferris2.explore();
     
     Pixel[] pixels3;
-    pixels3 = ferris3.getPixels();
+    //pixels3 = ferris3.getPixels();
     int avg;
     for (Pixel spot2 : pixels3)
     {
@@ -127,10 +136,10 @@ public class TestPicture17
         spot2.setBlue(avg);
         count++;
     }
-    ferris3.explore();
+   // ferris3.explore();
     
     Pixel[] pixels4;
-    pixels4 = ferris4.getPixels();
+   // pixels4 = ferris4.getPixels();
     
     for (Pixel spot2 : pixels4)
     {
@@ -145,12 +154,12 @@ public class TestPicture17
         spot2.setBlue(blue);
         
     }
-    ferris4.explore();
+   // ferris4.explore();
     
     Pixel[] pixels5;
-    pixels5 = ferris5.getPixels();
+   // pixels5 = ferris5.getPixels();
     
-    for (Pixel spot2 : pixels5)
+  //  for (Pixel spot2 : pixels5)
     {
         red=spot2.getRed();
         green=spot2.getGreen();
@@ -163,12 +172,12 @@ public class TestPicture17
         spot2.setBlue(blue);
         
     }
-    ferris5.explore();
+   // ferris5.explore();
     
     Pixel[] pixels6;
-    pixels6 = ferris6.getPixels();
+  //  pixels6 = ferris6.getPixels();
     
-    for (Pixel spot2 : pixels6)
+  //  for (Pixel spot2 : pixels6)
     {
         red=spot2.getRed();
         green=spot2.getGreen();
@@ -188,7 +197,7 @@ public class TestPicture17
         
         
     }
-    ferris6.explore();
+   // ferris6.explore();
     
     
     
@@ -215,7 +224,7 @@ public class TestPicture17
     }
     ferris1.explore();
    
- /**/
+ */
 
  /**
   * Method to clear red from picture
@@ -261,8 +270,55 @@ final double  FACTOR = .5;
 
   /**/ 
     //write/save a picture as a file
-    ferris1.write("images/ferris11.jpg");
+    //ferris1.write("images/ferris11.jpg");
 
     /**/
   }//main
+  
+  
+  /**
+   * method to mirror aroung a vertical line in the middle
+   * of the picture based on the width
+   */
+  public static void mirrorVertical(Picture apic)
+  {
+      int width = apic.getWidth();
+      int mirrorPoint = width/2;
+      Pixel leftPixel = null;
+      Pixel rightPixel = null;
+      
+      
+      //loop through all the rows
+      for (int y = 0; y < apic.getHeight();y++)
+      {
+          //loop from 0 to the middle (mirrir point)
+          for (int x = 0; x < mirrorPoint; x++)
+          {
+              leftPixel = apic.getPixel(x,y);
+              rightPixel = apic.getPixel(width-1-x,y);
+              rightPixel.setColor(leftPixel.getColor());
+          }
+      }
+      
+  }
+  /**
+   * add two ints to the parameters and place you want target to go 
+   * ont the canvas
+   */
+  public static void copytoCanvas(Picture source, Picture target)
+  {
+      Pixel sourcePix = null;
+      Pixel targetPix = null;
+      
+      //loop through the columns
+      for(int sourceX = 0, targetX = 0;sourceX < source.getWidth(); sourceX++, targetX++)
+      {
+         for(int sourceY = 0, targetY = 0;sourceY < source.getHeight(); sourceY++, targetY++) 
+         {
+             sourcePix = source.getPixel(sourceX,sourceY);
+             targetPix = target.getPixel(targetX,targetY);
+             targetPix.setColor(sourcePix.getColor());
+         }
+      }
+  }
 }//class
