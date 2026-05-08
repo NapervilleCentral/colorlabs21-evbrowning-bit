@@ -269,6 +269,7 @@ public class TestPicture17
      Picture apic1 = new Picture("images\\black.pigeon2.jpg");
      Picture apic2 = new Picture("images\\black.pigeon2.jpg");
      Picture apic3 = new Picture("images\\black.pigeon2.jpg");
+     Picture apic4 = new Picture("images\\black.pigeon2.jpg");
      Picture temple = new Picture("images\\temple.jpg");
      Picture canvas = new Picture("images\\this one.jpg");
      
@@ -276,14 +277,53 @@ public class TestPicture17
      
      mirrorVertical(apic2);
      greyScale(apic3);
+     inside(apic4);
+     
      
      copytoCanvas(apic1,canvas);
      copytoCanvas(apic2,canvas);
      copytoCanvas(apic3,canvas);
+     copytoCanvas(apic4,canvas);
      canvas.explore();
 
     /**/
   }//main
+  public static void inside(Picture apic)
+  {
+    
+    inside(apic, 0, 0, apic.getWidth(), apic.getHeight());
+    apic.explore();
+  }
+  private static void inside(Picture pic, int startX, int startY, int width, int height)
+  {
+      //half
+      int newWidth = width/2;
+      int newHeight = height/2;
+     
+      //1/4th
+      int offsetX = startX + (width-newWidth) / 2;
+      int offsetY = startY + (height-newHeight) / 2;
+     
+      Pixel target = null;
+      Pixel source = null;
+    if(height < 1)
+    {
+        return;
+    }
+    else
+    {
+        for(int y = 0; y < newHeight; y++)
+        {
+            for(int x = 0; x < newWidth; x++)
+            {
+                  source = pic.getPixel(startX + x * 2, startY + y * 2);
+                  target = pic.getPixel(offsetX + x, offsetY + y);
+                  target.setColor(source.getColor());
+            }
+        }      
+        inside(pic, offsetX, offsetY, newWidth, newHeight);
+    }
+  }
   public static void greyScale(Picture apic)
   {
     Pixel[] pixels;  
