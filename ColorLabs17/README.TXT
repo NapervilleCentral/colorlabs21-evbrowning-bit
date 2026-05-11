@@ -9,9 +9,19 @@ PURPOSE OF PROJECT: alter the colors of a picture
 VERSION or DATE: 11/14/25
 HOW TO START THIS PROJECT: create the colors you need and greyscale
 AUTHORS: Ethan Browning
-USER INSTRUCTIONS: customize the colors on the picture by taking each pixel and gray scaling it
+USER INSTRUCTIONS: customize the colors on the picture by taking each pixel and gray scaling it, then assign it a new color
 
-1) who-what was the critique
-Hudson - balance the colors more
-Evan Hader - add another bucket and make it more defined 
-Manny- add more white
+who-what was the critique
+1) Hudson - balance the colors more
+2) Evan Hader - add another bucket and make it more defined 
+3) Manny- add more white
+
+
+
+Collage Project:
+
+My original image was a pigeon with a persons face on it.
+my first mutation was I mirrored it vertically
+my second mutation was gray scaling the image to make it look black and white
+my third mutation was recursively calling the image inside of itself over and over again
+my fourth mutation was making every color inverse

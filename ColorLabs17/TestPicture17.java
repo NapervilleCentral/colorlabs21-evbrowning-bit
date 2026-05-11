@@ -266,10 +266,11 @@ public class TestPicture17
     //write/save a picture as a file
     //ferris1.write("images/ferris11.jpg");
      
-     Picture apic1 = new Picture("images\\black.pigeon2.jpg");
-     Picture apic2 = new Picture("images\\black.pigeon2.jpg");
-     Picture apic3 = new Picture("images\\black.pigeon2.jpg");
-     Picture apic4 = new Picture("images\\black.pigeon2.jpg");
+     Picture apic1 = new Picture("images\\black.pigeon3.jpg");
+     Picture apic2 = new Picture("images\\black.pigeon3.jpg");
+     Picture apic3 = new Picture("images\\black.pigeon3.jpg");
+     Picture apic4 = new Picture("images\\black.pigeon3.jpg");
+     Picture apic5 = new Picture("images\\black.pigeon3.jpg");
      Picture temple = new Picture("images\\temple.jpg");
      Picture canvas = new Picture("images\\this one.jpg");
      
@@ -278,16 +279,36 @@ public class TestPicture17
      mirrorVertical(apic2);
      greyScale(apic3);
      inside(apic4);
-     
+     inverse(apic5);
      
      copytoCanvas(apic1,canvas);
      copytoCanvas(apic2,canvas);
      copytoCanvas(apic3,canvas);
      copytoCanvas(apic4,canvas);
+     copytoCanvas(apic5,canvas);
      canvas.explore();
 
     /**/
   }//main
+  public static void inverse(Picture apic)
+  {
+    Pixel[] pixels2;  
+    pixels2 = apic.getPixels();
+    int red,blue,green,count=0,newBlue,newRed,newGreen;
+    for (Pixel spot : pixels2)
+    {
+        red=spot.getRed();
+        green=spot.getGreen();
+        blue=spot.getBlue();
+        newBlue=255-blue;
+        newGreen=255-green;
+        newRed=255-red;
+        spot.setRed(newRed);
+        spot.setGreen(newGreen);
+        spot.setBlue(newBlue);
+        count++;
+    }
+  }
   public static void inside(Picture apic)
   {
     
