@@ -271,8 +271,9 @@ public class TestPicture17
      Picture apic3 = new Picture("images\\black.pigeon3.jpg");
      Picture apic4 = new Picture("images\\black.pigeon3.jpg");
      Picture apic5 = new Picture("images\\black.pigeon3.jpg");
+     Picture apic6 = new Picture("images\\black.pigeon3.jpg");
      Picture temple = new Picture("images\\temple.jpg");
-     Picture canvas = new Picture("images\\this one.jpg");
+     Picture canvas = new Picture("images\\CANVAS.jpg");
      
      //apic.explore();
      
@@ -280,16 +281,46 @@ public class TestPicture17
      greyScale(apic3);
      inside(apic4);
      inverse(apic5);
+     Picture newPic = flip(apic6);
      
-     copytoCanvas(apic1,canvas);
-     copytoCanvas(apic2,canvas);
-     copytoCanvas(apic3,canvas);
-     copytoCanvas(apic4,canvas);
-     copytoCanvas(apic5,canvas);
+     copyKatie(apic1,canvas,0,0);
+     copyKatie(apic2,canvas,1000,0);
+     copyKatie(apic3,canvas,2000,0);
+     copyKatie(apic4,canvas,0,1786);
+     copyKatie(apic5,canvas,1000,1786);
+     copyKatie(newPic,canvas,2000,1786);
      canvas.explore();
+     canvas.write("images\\poster project.jpg");
 
     /**/
-  }//main
+    }//main
+  public static Picture flip(Picture apic)
+  {
+    int width = apic.getWidth();
+    int height = apic.getHeight();
+
+    Picture newPic = new Picture(width, height);
+
+    Pixel oldPixel = null;
+    Pixel newPixel = null;
+
+    for(int y = 0; y < height; y++)
+    {
+        for(int x = 0; x < width; x++)
+        {
+            oldPixel = apic.getPixel(x, y);
+
+            // 180 degree rotation formula
+            newPixel = newPic.getPixel(width - 1 - x, height - 1 - y);
+
+            newPixel.setColor(oldPixel.getColor());
+        }
+    }
+    return newPic;
+
+    
+    }   
+  
   public static void inverse(Picture apic)
   {
     Pixel[] pixels2;  
@@ -313,7 +344,7 @@ public class TestPicture17
   {
     
     inside(apic, 0, 0, apic.getWidth(), apic.getHeight());
-    apic.explore();
+    //apic.explore();
   }
   private static void inside(Picture pic, int startX, int startY, int width, int height)
   {
@@ -414,21 +445,25 @@ public class TestPicture17
    * add two ints to the parameters and place you want target to go 
    * ont the canvas
    */
-  public static void copytoCanvas(Picture source, Picture target)
-  {   // recursive copy to a x,y on the source
-      Pixel sourcePix = null;
-      Pixel targetPix = null;
-      
-      //loop through the columns              (larger sX=sX+.5)
-      for(int sourceX = 0, targetX = 0;sourceX < source.getWidth(); sourceX++, targetX++)
-      {
-          // goes through rows                                           source+=2 (larger sY=sY+.5)
-         for(int sourceY = 0, targetY = 0;sourceY < source.getHeight(); sourceY++, targetY++) 
-         {
-             sourcePix = source.getPixel(sourceX,sourceY);
-             targetPix = target.getPixel(targetX,targetY);
-             targetPix.setColor(sourcePix.getColor());
-         }
-      }
-  }
+  public static void copyKatie( Picture sourcePic, Picture targetPic,int x,int y)
+    {
+    Pixel sourcePix = null;
+    Pixel targetPix = null;
+    //width of the source must be <= to the canvas I am
+    //going to copy to
+    for (int sourceX = 0, targetX = x;
+        sourceX<sourcePic.getWidth();
+        sourceX++, targetX ++)
+        {
+        for (int sourceY = 0, targetY = y;
+        sourceY<sourcePic.getHeight();
+        sourceY++, targetY ++)
+        {
+            //set the target pix color of the source pix
+            sourcePix = sourcePic.getPixel(sourceX,sourceY);
+            targetPix = targetPic.getPixel(targetX,targetY);
+            targetPix.setColor(sourcePix.getColor());
+        }//loop
+    }//loop
+}//end of copyKatie
 }//class
